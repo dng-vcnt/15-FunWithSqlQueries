@@ -87,9 +87,23 @@ select LastName+', '+FirstName As DisplayName
 from Employees
 
 -- 18. Write a query to add yourself to the Customers table with an order for 'Grandma's Boysenberry Spread'.
-
+set IDENTITY_INSERT Orders on
+Insert into Customers(CustomerID, CompanyName)
+values('99999', 'Vincent')
+Insert into Orders(OrderID, CustomerID)
+values('00001', '99999')
+Insert into [Order Details](OrderID, ProductID)
+values('00001', '6')
 
 -- 19. Write a query to remove yourself and your order from the database.
-
+delete from Customers
+where CompanyName='Vincent'
+delete from Orders
+where OrderID = '1'
+delete from [Order Details]
+where OrderID = '1'
 
 -- 20. Write a query to return a list of products from the Products table along with the total units in stock for each product. Include only products with TotalUnits greater than 100.
+select ProductName, UnitsInStock
+from Products
+where UnitsInStock > 100
