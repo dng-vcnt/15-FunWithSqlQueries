@@ -43,10 +43,11 @@ from [Order Details]
 order by [Quantity] desc
 
 -- 10. Write a query to return the company name, address, city, postal code and country of all customers with orders that shipped using Speedy Express, along with the date that the order was made.
-select [ShipName], [ShipAddress], [ShipCity], [ShipPostalCode], [ShipCountry], [OrderDate]
+select [ShipName], [ShipAddress], [ShipCity], [ShipPostalCode], [ShipCountry], [OrderDate], [ShipVia]
 from Orders
-right join Shippers 
-on Orders.ShipVia = 1
+left join Shippers 
+on Orders.ShipVia = Shippers.ShipperID
+where Orders.ShipVia = 1
 
 -- 11. Write a query to return a list of Suppliers containing company name, contact name, contact title and region description.
 select [CompanyName],[ContactTitle],[ContactName],[Region]
